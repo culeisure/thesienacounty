@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex, nofollow">
+<title>PROJECT ILZO · 일조</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--m:#822C41;--m2:#B25C72;--ink:#221E1F;--sub:#5B5556;--mute:#8A8586;--line:#E6E2E3;--gray:#F4F4F4;--tint:#F3ECEE;--cream:#F8F1E4;--blue:#1F6F9C;--green:#2E7D57;--gold:#B07D2B}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Pretendard,'Noto Sans KR',sans-serif;color:var(--ink);background:#EFEDED;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:228px 1fr;min-height:100vh}
+a{text-decoration:none;color:inherit;cursor:pointer}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700}
+.b-m{background:var(--tint);color:var(--m)}.b-g{background:#E9F2ED;color:var(--green)}.b-b{background:#E8F1F6;color:var(--blue)}.b-gd{background:var(--cream);color:var(--gold)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px}
+.k{font-size:12px;color:var(--mute);font-weight:500;letter-spacing:.02em}
+.v{font-size:26px;font-weight:900;letter-spacing:-.02em}
+.v small{font-size:13px;font-weight:600;color:var(--sub);margin-left:4px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--ink);color:#fff;font-weight:700;padding:8px 10px;text-align:left;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid var(--line)}
+tr:nth-child(even) td{background:#FAF9F9}
+.bar{height:8px;background:var(--gray);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--m);border-radius:99px;transition:width 1s ease}
+
+/* ---- sidebar ---- */
+nav{background:var(--ink);color:#fff;padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+nav .logo{font-weight:900;letter-spacing:.18em;font-size:11.5px;color:#C8C4C5}
+nav h1{font-size:23px;margin:6px 0 2px;font-weight:900}
+nav h1 span{color:#D9A6B4;font-size:14px;font-weight:600;margin-left:6px}
+nav .sub{font-size:11px;color:#9B9596;margin-bottom:22px}
+nav a{display:block;padding:9.5px 12px;border-radius:8px;font-size:13.5px;color:#D9D5D6;margin-bottom:3px}
+nav a:hover{background:#332A2C}
+nav a.on{background:var(--m);color:#fff;font-weight:700}
+nav .acct{margin-top:auto;border-top:1px solid #3A3234;padding-top:14px;font-size:11px;color:#9B9596;line-height:1.7}
+nav .acct b{color:#EADFE2}
+
+/* ---- main ---- */
+main{padding:22px 28px 34px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;gap:14px}
+.top h2{font-size:20px;font-weight:900;white-space:nowrap}
+.top .d{font-size:12.5px;color:var(--sub);text-align:right}
+.view{display:none}
+.view.on{display:block;animation:vin .35s ease}
+@keyframes vin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kpi{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.kpi .card{padding:14px 16px}
+.kpi .v{margin:4px 0 6px}
+.g2{display:grid;grid-template-columns:1.15fr 1fr;gap:12px;margin-bottom:12px}
+.card h3{font-size:13.5px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between}
+.card h3 span{font-size:11px;color:var(--mute);font-weight:500}
+.prog{height:10px;background:var(--gray);border-radius:99px;margin:6px 0}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--m),var(--m2));border-radius:99px;transition:width 1.2s ease}
+.note{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 18px;display:flex;gap:22px;align-items:center;font-size:12.5px;flex-wrap:wrap}
+.note b{color:var(--m)}
+.sum{display:flex;gap:10px;margin-bottom:14px}
+.sum .card{padding:12px 16px;flex:1}
+.sum .v{font-size:22px}
+
+/* 일조 맵 보드 */
+.board{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.col{background:var(--gray);border-radius:12px;padding:12px}
+.hh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--m);padding-bottom:8px;margin-bottom:8px}
+.hh b{font-size:15px}.hh span{font-size:11px;color:var(--sub)}
+.col ul{list-style:none}
+.col li{background:#fff;border-radius:8px;padding:9px 10px;margin-bottom:6px;display:flex;justify-content:space-between;font-size:12.5px}
+.col li b{color:var(--m)}
+.leg{margin-top:14px;font-size:12px;color:var(--sub)}
+
+/* 에듀 */
+.gEdu{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.vid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.vid .card{padding:0;overflow:hidden}
+.vid .th{height:86px;background:linear-gradient(135deg,#3A2A2F,#822C41);display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px}
+.vid .t{padding:10px 12px;font-size:12.5px;font-weight:700}
+.vid .s{padding:0 12px 10px;font-size:11px;color:var(--mute)}
+
+/* 폰 프레임 (리포트 · 앱) */
+.phoneWrap{display:grid;grid-template-columns:400px 1fr;gap:22px;align-items:start}
+.phone{width:392px;border:10px solid #1B1516;border-radius:34px;overflow:hidden;background:#B2C7D9;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+.phone.white{background:#fff}
+.ph-in{padding:14px 12px}
+.hdrTxt{text-align:center;font-size:11px;color:#3A4A5A;margin-bottom:10px}
+.msg{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.msg .h{background:var(--m);color:#fff;padding:14px 16px}
+.msg .h .t{font-size:11px;letter-spacing:.14em;color:#EAD0D8}
+.msg .h h2{font-size:19px;font-weight:900;margin-top:2px}
+.msg .h h2 span{font-weight:500;font-size:13px;color:#EAD0D8;margin-left:6px}
+.msg .b{padding:14px 16px}
+.big{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:10px}
+.big .v{font-size:30px}
+.row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.row b{font-weight:800}
+.secT{font-size:11.5px;color:var(--mute);font-weight:700;margin:12px 0 4px;letter-spacing:.06em}
+.btn{display:block;text-align:center;background:var(--ink);color:#fff;border-radius:10px;padding:11px;font-size:13.5px;font-weight:700;margin-top:14px}
+.mprog{height:8px;background:var(--gray);border-radius:99px;margin:8px 0 4px}
+.mprog i{display:block;height:100%;width:27.9%;background:var(--m);border-radius:99px}
+/* 앱 화면 */
+.appTop{background:var(--ink);color:#fff;padding:26px 20px 18px}
+.appTop .t{font-size:11px;letter-spacing:.14em;color:#C8C4C5}
+.appTop h1{font-size:22px;font-weight:900;margin-top:4px}
+.appTop h1 span{font-size:13px;color:#D9A6B4;font-weight:500;margin-left:6px}
+.appTop .me{margin-top:10px;font-size:13px;color:#EDEAEA}
+.appWrap{padding:16px 18px;background:#fff}
+.today{background:var(--m);color:#fff;border-radius:14px;padding:16px}
+.today .k{color:#EAD0D8}
+.today h2{font-size:19px;font-weight:900;margin:4px 0}
+.today .chk{display:inline-block;background:#fff;color:var(--m);border-radius:99px;padding:6px 12px;font-size:12px;font-weight:800;margin-top:10px}
+.appGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.appGrid .card{padding:13px;text-align:center}
+.appGrid .n{font-size:13px;font-weight:800}
+.appGrid .s{font-size:11px;color:var(--mute);margin-top:3px}
+.expl{display:flex;flex-direction:column;gap:10px}
+.expl .card{padding:16px 18px}
+.expl h4{font-size:13.5px;font-weight:800;margin-bottom:6px;color:var(--m)}
+.expl p{font-size:12.5px;color:var(--sub);line-height:1.65}
+
+/* 개인 랜딩 관리 */
+.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.lcard .nm{font-size:14.5px;font-weight:800}
+.lcard .hub{font-size:11px;color:var(--mute);margin-top:2px}
+.lcard .st{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--sub)}
+.lcard .st b{display:block;font-size:17px;color:var(--ink)}
+.lcard .lk{display:block;margin-top:12px;background:var(--tint);color:var(--m);border-radius:8px;text-align:center;padding:8px;font-size:12px;font-weight:800}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">PROJECT ILZO</div>
+  <h1>일조<span>一兆</span></h1>
+  <div class="sub">매일이 쌓여 1조 · 영업 관리 시스템</div>
+  <a class="on" data-v="dash">대시보드 · 일조 보드</a>
+  <a data-v="map">현장 배치 · 일조 맵</a>
+  <a data-v="sales">상담 · 회원모집 · 계약</a>
+  <a data-v="report">일조 리포트</a>
+  <a data-v="app">일조 앱 (영업사원)</a>
+  <a data-v="hubs">거점 · 인원</a>
+  <a data-v="edu">교육 · 일조 에듀</a>
+  <a data-v="landing">개인 랜딩 관리</a>
+  <a data-v="tm">고객 DB · TM</a>
+  <a data-v="pay">정산 · 전자계약</a>
+  <div class="acct"><b>회장 · 시행사 계정 공유</b><br>읽기 전용 · 매일 07:00 자동 결산<br><span style="color:#6E6467">시연용 데모 · 2027.03.24 기준 시뮬레이션</span></div>
+</nav>
+
+<main>
+
+<!-- ================= 대시보드 ================= -->
+<section class="view on" id="v-dash">
+  <div class="top"><h2>본부 통합 대시보드 <span class="badge b-m" style="vertical-align:middle;margin-left:8px">1년차 D+114</span></h2><div class="d">2027.03.24 (수) 07:00 기준 · 자동 집계 · 회장 · 시행사 계정 공유</div></div>
+  <div class="kpi">
+    <div class="card"><div class="k">누적 계약</div><div class="v">1,540<small>구좌</small></div><div class="prog"><i data-w="27.9%"></i></div><div class="k">연 목표 5,520 · <b style="color:var(--m)">27.9%</b></div></div>
+    <div class="card"><div class="k">누적 금액</div><div class="v">1,540<small>억</small></div><div class="k" style="margin-top:14px">잔금 납부 기준 1,500억 <span class="badge b-g">달성</span></div></div>
+    <div class="card"><div class="k">어제 계약</div><div class="v">23<small>구좌</small></div><div class="k" style="margin-top:14px">일 목표 23 · 100%</div></div>
+    <div class="card"><div class="k">어제 상담 · 회원모집</div><div class="v">128<small>· 42</small></div><div class="k" style="margin-top:14px">상담 → 신청 32.8%</div></div>
+    <div class="card"><div class="k">현장 투입</div><div class="v">187<small>/ 200명</small></div><div class="k" style="margin-top:14px">골프장 데스크 18개소 · 연습장 41개소</div></div>
+    <div class="card"><div class="k">교육 수료</div><div class="v">200<small>/ 200</small></div><div class="k" style="margin-top:14px">미수료 현장 배치 0명</div></div>
+  </div>
+  <div class="g2">
+    <div class="card"><h3>거점별 누적 · 목표 달성률<span>연 목표 대비</span></h3><table id="hubTbl"></table></div>
+    <div class="card"><h3>오늘 현장 배치 · 골프장 데스크<span>상위 10개장 · 외 11개장</span></h3><table id="siteTbl"></table></div>
+  </div>
+  <div class="note"><b>07:00 일조 리포트 발송 완료</b><span>회장 · 부회장 · 시행사 3계정</span><span style="color:var(--mute)">|</span><span>오늘 일정 · 법인 미팅 6건 (울산 3 · 서울 2 · 대구 1) · 대구 거점 시타 행사 · 금융권 제안서 4건 발송</span></div>
+</section>
+
+<!-- ================= 일조 맵 ================= -->
+<section class="view" id="v-map">
+  <div class="top"><h2>일조 맵 · 현장 배치 보드</h2><div class="d">2027.03.24 (수) 08:55 · 체크인 기준 · 거점 관리자 전일 18:00 배치 확정 · 본부 승인</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">현장 투입</div><div class="v">187<small>/ 200명</small></div></div>
+    <div class="card"><div class="k">골프장 데스크</div><div class="v">18<small>개소 · 21개장 중</small></div></div>
+    <div class="card"><div class="k">연습장 거점</div><div class="v">41<small>개소</small></div></div>
+    <div class="card"><div class="k">법인 · 금융 미팅</div><div class="v">21<small>건</small></div></div>
+    <div class="card"><div class="k">본부 · 교육 · 휴무</div><div class="v">13<small>명</small></div></div>
+  </div>
+  <div class="board" id="mapBoard"></div>
+  <div class="leg">숫자는 배치 인원 · 골프장 데스크는 부킹 강세 사업지 우선 · 주말 · 성수기 집중 배치 · 체크인 · 체크아웃 기록 기준</div>
+</section>
+
+<!-- ================= 상담 · 회원모집 · 계약 ================= -->
+<section class="view" id="v-sales">
+  <div class="top"><h2>상담 · 회원모집 · 계약</h2><div class="d">어제 (03.23) 기준 · 현장 입력 즉시 집계</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">상담</div><div class="v">128<small>건</small></div></div>
+    <div class="card"><div class="k">회원모집 신청</div><div class="v">42<small>건 · 전환 32.8%</small></div></div>
+    <div class="card"><div class="k">전자계약 체결</div><div class="v">23<small>구좌</small></div></div>
+    <div class="card"><div class="k">재상담 예약</div><div class="v">31<small>건</small></div></div>
+  </div>
+  <div class="card"><h3>어제 계약 23구좌<span>거점 · 상품 · 경로</span></h3><table id="dealTbl"></table></div>
+</section>
+
+<!-- ================= 일조 리포트 ================= -->
+<section class="view" id="v-report">
+  <div class="top"><h2>일조 리포트 · 매일 07:00 알림톡</h2><div class="d">회장 · 부회장 · 시행사 계정 자동 발송</div></div>
+  <div class="phoneWrap">
+    <div class="phone"><div class="ph-in">
+      <div class="hdrTxt">더시에나 카운티 · 일조 알림톡 · 오전 7:00</div>
+      <div class="msg"><div class="h"><div class="t">DAILY REPORT</div><h2>일조<span>一兆 리포트 · 2027.03.24 (수)</span></h2></div>
+      <div class="b">
+        <div class="big"><div><div class="k">어제 계약</div><div class="v">23<small>구좌 · 23억</small></div></div><div style="text-align:right"><div class="k">일 목표 23구좌</div><div class="badge b-g">100% 달성</div></div></div>
+        <div class="k">누적 1,540구좌 · 1,540억 · 연 목표 5,520</div><div class="mprog"><i></i></div><div class="k" style="text-align:right"><b style="color:var(--m)">27.9%</b> · D+114</div>
+        <div class="secT">거점 TOP 3 (어제)</div>
+        <div class="row"><span>울산 (부산 · 창원 포함)</span><b>7구좌</b></div>
+        <div class="row"><span>서울 본부 · 법인 직판</span><b>6구좌</b></div>
+        <div class="row"><span>대구</span><b>4구좌</b></div>
+        <div class="secT">현장</div>
+        <div class="row"><span>현장 투입</span><b>187 / 200명</b></div>
+        <div class="row"><span>골프장 데스크 · 연습장 거점</span><b>18개소 · 41개소</b></div>
+        <div class="row"><span>상담 128 · 신청 42</span><b>전환 32.8%</b></div>
+        <div class="secT">오늘</div>
+        <div class="row"><span>법인 미팅</span><b>6건</b></div>
+        <div class="row"><span>대구 거점 시타 행사 · 금융권 제안 4건</span><b>진행</b></div>
+        <a class="btn" data-v="dash">일조 보드 열기 →</a>
+      </div></div>
+      <div style="font-size:10.5px;color:#3A4A5A;text-align:center;margin-top:10px">매일 07:00 자동 발송 · 회장 · 부회장 · 시행사 계정</div>
+    </div></div>
+    <div class="expl">
+      <div class="card"><h4>하루가 쌓여 1조</h4><p>영업사원 200명의 현장 입력이 18:00 자동 집계되고, 다음 날 아침 7시 회장 · 시행사 계정으로 결산 리포트가 도착합니다. 취합하는 사람이 없습니다.</p></div>
+      <div class="card"><h4>어제 · 누적 · 오늘</h4><p>어제 계약과 달성률, 누적 진행률, 오늘의 법인 미팅 · 행사 일정까지 한 화면. 밀리는 거점은 리포트에서 바로 드러납니다.</p></div>
+      <div class="card"><h4>일 목표 23구좌</h4><p>연 5,520구좌를 일 단위 행동량으로 분해한 숫자입니다. 매일 아침 이 숫자 대비로 하루를 시작합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 일조 앱 ================= -->
+<section class="view" id="v-app">
+  <div class="top"><h2>일조 앱 · 영업사원</h2><div class="d">체크인 · 상담 입력 · 전자계약 · 개인 랜딩 · 교육</div></div>
+  <div class="phoneWrap">
+    <div class="phone white"><div>
+      <div class="appTop"><div class="t">THE SIENA COUNTY</div><h1>일조<span>一兆 · 영업사원 앱</span></h1><div class="me">김서진 · 울산 거점 · 사번 US-017</div></div>
+      <div class="appWrap">
+        <div class="today"><div class="k">오늘 배치 · 2027.03.24 (수)</div><h2>GC감포 골프장 데스크</h2><div class="k">09:00 ~ 18:00 · 동반 배치 2명 · 주말 성수기 집중</div><span class="chk">✓ 체크인 08:52 · 현장 확인</span></div>
+        <div class="appGrid">
+          <div class="card"><div class="n">상담 입력</div><div class="s">오늘 5건</div></div>
+          <div class="card"><div class="n">회원모집 · 전자계약</div><div class="s">진행 1건</div></div>
+          <div class="card"><div class="n">내 랜딩 페이지</div><div class="s">방문 38 · 신청 3</div></div>
+          <div class="card"><div class="n">교육 영상</div><div class="s">진행률 92%</div></div>
+        </div>
+        <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div><div class="k">이번 달 계약</div><div class="v" style="font-size:22px">6<small>/ 목표 8구좌</small></div></div><span class="badge b-m">거점 3위</span></div>
+          <div class="row"><span>14:10 · 박OO · 현장 상담</span><b>S1 관심</b></div>
+          <div class="row"><span>11:30 · 이OO · 라운드 후 상담</span><b>V1 신청</b></div>
+          <div class="row"><span>09:40 · 정OO · 재상담 예약</span><b>내일 10:00</b></div>
+        </div>
+      </div>
+    </div></div>
+    <div class="expl">
+      <div class="card"><h4>체크인이 곧 근무현황</h4><p>현장 도착 체크인이 일조 맵에 실시간 표시됩니다. 본부는 추측이 아니라 기록으로 200명의 현장을 봅니다.</p></div>
+      <div class="card"><h4>상담 입력 → 자동 집계</h4><p>골프장 데스크 · 연습장 · 법인 미팅에서 상담 즉시 입력. 담당자가 바뀌어도 고객 이력은 시스템에 남습니다.</p></div>
+      <div class="card"><h4>개인 랜딩 · 교육 연동</h4><p>영업사원별 개인 랜딩 방문 · 신청 현황과 교육 진행률까지 한 앱에서. 미수료자는 배치 목록에서 자동 제외됩니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 거점 · 인원 ================= -->
+<section class="view" id="v-hubs">
+  <div class="top"><h2>거점 · 인원</h2><div class="d">본부 50 + 거점 150 = 200명 · 전원 씨유레저 직영</div></div>
+  <div class="card" style="margin-bottom:12px"><h3>거점 편성 · 연 목표<span>목표와 조직 1:1 연동</span></h3><table id="orgTbl"></table></div>
+  <div class="note"><b>로테이션 운영</b><span>골프장 · 연습장 데스크는 별도 조직이 아닌 거점 소속 인원의 탄력 배치</span><span style="color:var(--mute)">|</span><span>주중 연습장 · 법인 중심, 주말 · 성수기 골프장 데스크 집중</span></div>
+</section>
+
+<!-- ================= 일조 에듀 ================= -->
+<section class="view" id="v-edu">
+  <div class="top"><h2>일조 에듀 · 교육 · 수료 관리</h2><div class="d">전 과목 영상화 · 수료자만 현장 배치 · 재직 200명 · 신규 입사 대기 6명</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">전 과목 수료</div><div class="v">200<small>/ 200명</small></div></div>
+    <div class="card"><div class="k">미수료 현장 배치</div><div class="v">0<small>명</small></div></div>
+    <div class="card"><div class="k">영상 콘텐츠</div><div class="v">47<small>편 · 총 6.2시간</small></div></div>
+    <div class="card"><div class="k">평가 재응시</div><div class="v">3<small>명 · 이번 주</small></div></div>
+  </div>
+  <div class="gEdu">
+    <div class="card"><h3>과정별 진행 현황</h3><table id="eduTbl"></table></div>
+    <div>
+      <div class="card" style="margin-bottom:10px"><h3>이번 주 신규 영상</h3><div class="vid">
+        <div class="card"><div class="th">▶</div><div class="t">창립 6대 혜택 화법</div><div class="s">상품교육 · 7:40</div></div>
+        <div class="card"><div class="th">▶</div><div class="t">법인 묶음 · 금융권 제안</div><div class="s">영업교육 · 9:15</div></div>
+        <div class="card"><div class="th">▶</div><div class="t">골프장 데스크 응대 표준</div><div class="s">현장교육 · 5:50</div></div>
+      </div></div>
+      <div class="card"><h3>배치 규칙</h3><div style="font-size:12.5px;color:var(--sub);line-height:1.8">· 교육 미수료자는 일조 맵 배치 목록에 표시되지 않음<br>· 평가 미달 → 재교육 후 이전 단계부터 재응시<br>· 신규 입사자는 1주 압축 과정 수료 후 동행 배치</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 개인 랜딩 관리 ================= -->
+<section class="view" id="v-landing">
+  <div class="top"><h2>개인 랜딩 관리</h2><div class="d">영업사원별 자동 생성 · 방문 · 신청 · 전환 GA4 추적</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">운영 중 개인 랜딩</div><div class="v">200<small>개</small></div></div>
+    <div class="card"><div class="k">어제 방문</div><div class="v">1,842<small>회</small></div></div>
+    <div class="card"><div class="k">어제 상담 신청</div><div class="v">67<small>건</small></div></div>
+    <div class="card"><div class="k">전화 · 문자 클릭</div><div class="v">214<small>회</small></div></div>
+  </div>
+  <div class="lgrid" id="landGrid"></div>
+  <div class="note" style="margin-top:12px"><b>실물 예시</b><span>더시에나 카운티 안내 랜딩이 이 구조로 이미 배포되어 있습니다</span><a class="badge b-m" href="../" target="_blank" rel="noopener">랜딩 열어보기 →</a></div>
+</section>
+
+<!-- ================= 고객 DB · TM ================= -->
+<section class="view" id="v-tm">
+  <div class="top"><h2>고객 DB · TM</h2><div class="d">동의 DB만 사용 · 수신 거부 즉시 반영 · 3단계 TM 시점 자동 알림</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">전체 관리 DB</div><div class="v">48,200<small>건</small></div></div>
+    <div class="card"><div class="k">자료 발송 동의</div><div class="v">9,410<small>건</small></div></div>
+    <div class="card"><div class="k">사전 등록 · 대기</div><div class="v">2,730<small>건</small></div></div>
+    <div class="card"><div class="k">오늘 TM 배정</div><div class="v">640<small>건 · 거점 배분</small></div></div>
+  </div>
+  <div class="card"><h3>오늘 TM 큐<span>반응 단계별 자동 배정</span></h3><table id="tmTbl"></table></div>
+</section>
+
+<!-- ================= 정산 · 전자계약 ================= -->
+<section class="view" id="v-pay">
+  <div class="top"><h2>정산 · 전자계약</h2><div class="d">회원모집 → 계약서 → 서명 → 정산까지 시스템 처리</div></div>
+  <div class="sum">
+    <div class="card"><div class="k">이번 달 전자계약</div><div class="v">402<small>건</small></div></div>
+    <div class="card"><div class="k">서명 대기</div><div class="v">17<small>건</small></div></div>
+    <div class="card"><div class="k">이번 달 정산 확정</div><div class="v">385<small>건</small></div></div>
+    <div class="card"><div class="k">거점 · 개인 실적 반영</div><div class="v">자동<small>· 실시간</small></div></div>
+  </div>
+  <div class="card"><h3>최근 전자계약<span>어제 23구좌 중</span></h3><table id="payTbl"></table></div>
+</section>
+
+</main>
+
+<script>
+/* ---------- 데이터 ---------- */
+const hubs=[["울산",40,391,1400],["서울 본부",50,363,1300],["대구",30,251,900],["광주",30,156,560],["천안",25,126,450],["대전",25,126,450],["본부 법인 직판","-",127,460]];
+const sites=[["GC감포","울산",6,11,3,"강세"],["GC이든","울산",6,9,2,"강세"],["GC사천","울산",5,8,2,"강세"],["GC경남","울산",4,6,1,"강세"],["이글몬트CC","서울",6,10,2,"보통"],["GC안성H","서울",5,7,2,"강세"],["GC천안","천안",5,9,2,"강세"],["GC무주","대전",4,6,1,"강세"],["GC선산","대구",3,4,1,"회원제"],["GC순천","광주",4,5,1,"보통"]];
+const mapCols=[["서울 본부","50명 · 투입 46",["이글몬트CC 6","GC안성H 5","GC안성W 4","GC송도 4","연습장 9개소 12","법인 미팅 6","본부 대기 9"]],
+["천안","25명 · 투입 24",["GC천안 5","GC진천 4","GC화랑 3","연습장 6개소 8","산업단지 방문 4"]],
+["대전","25명 · 투입 23",["GC무주 4","조이마루 데스크 3","연습장 7개소 9","전문직 DM 후속 4","세종 금융 미팅 3"]],
+["대구","30명 · 투입 29",["GC선산 3","GC구미 3","GC청통 3","연습장 8개소 11","시타 행사 (범어) 6","법인 미팅 3"]],
+["울산","40명 · 투입 38",["GC감포 6","GC이든 6","GC사천 5","GC경남 4","더골프 4","연습장 7개소 9","법인 미팅 4"]],
+["광주","30명 · 투입 27",["GC순천 4","GC드래곤 3","GC선운 3","GC영암45 3","연습장 4개소 6","금융 미팅 5","전주 DM 후속 3"]]];
+const deals=[["울산","S1","GC감포 데스크 · 라운드 후 상담",7],["서울 본부","S1 × 2구좌","법인 직판 · 제조사 임원",6],["대구","S1","시타 행사 (범어)",4],["천안","V1","연습장 거점 · 프로 추천",3],["대전","S1","전문직 DM · TM 후속",2],["광주","V1","금융 미팅 · 조합 임원",1]];
+const org=[["서울 본부",50,"1,760구좌 · 1,760억","수도권 법인 · 자산가 · 금융권 · 거래소"],["울산",40,"1,400구좌 · 1,400억","부산 · 울산 · 경남 법인과 기존 DB"],["대구",30,"900구좌 · 900억","대구 법인 · 연습장 · 동호회"],["광주",30,"560구좌 · 560억","호남 시니어 · 전문직"],["천안",25,"450구좌 · 450억","충남 산업단지 · 연습장"],["대전",25,"450구좌 · 450억","대전 · 세종 전문직 · 금융"]];
+const edu=[["기본교육","시에나 브랜드 · 21개 골프장 · 사업 구조",6,100,"사업 이해도 평가"],["상품교육","V1 · S1 · 창립 혜택 · 주요 FAQ",8,100,"상품 테스트"],["영업교육","고객 유형별 화법 · 상담 · 법인 제안",10,98,"역할연습 평가"],["실무교육","고객관리 · 일일 영업보고 · 계약 · 현장 운영",7,97,"시스템 실습"],["현장교육","골프장 · 연습장 실전 동행",4,92,"관리자 확인"],["신규 입사자 과정","1주 압축 과정 · 전 과목 영상",12,88,"최종 점검"]];
+const lands=[["김서진","울산",38,3],["박지원","서울 본부",41,4],["이도현","대구",29,2],["정하늘","천안",22,2],["한수민","대전",19,1],["오세훈","광주",17,1],["강민재","울산",33,3],["윤소라","서울 본부",36,2]];
+const tms=[["1차 · 관심 확보","씨유레저 관리 고객 · 시에나 기존 고객",280,"브랜드 · 21개장 소개 · 자료 발송 동의"],["2차 · 사전 안내","자료 발송 동의 중 관심 표시",190,"창립 혜택 안내 · 상담 예약"],["3차 · 계약 전환","사전 등록 · 재상담 예약",170,"잔여 구좌 · 다음 가격 안내 · 데스크 연계"]];
+const pays=[["03.23 18:42","울산 · 김서진","S1","서명 완료 · 정산 확정"],["03.23 17:55","서울 본부 · 박지원","S1 × 2구좌","서명 완료 · 정산 확정"],["03.23 17:10","대구 · 이도현","S1","서명 완료 · 정산 확정"],["03.23 16:28","천안 · 정하늘","V1","서명 대기"],["03.23 15:44","울산 · 강민재","S1","서명 완료 · 정산 확정"]];
+
+/* ---------- 렌더 ---------- */
+const esc=s=>String(s);
+document.getElementById('hubTbl').innerHTML="<tr><th>거점</th><th>인원</th><th>누적 구좌</th><th>연 목표</th><th>달성률</th><th style='width:26%'></th></tr>"+hubs.map(([h,n,c,t])=>`<tr><td><b>${h}</b></td><td>${n}</td><td>${c.toLocaleString()}</td><td>${t.toLocaleString()}</td><td>${(c/t*100).toFixed(1)}%</td><td><div class='bar'><i style='width:${(c/t*100).toFixed(1)}%'></i></div></td></tr>`).join('');
+document.getElementById('siteTbl').innerHTML="<tr><th>골프장</th><th>거점</th><th>투입</th><th>어제 상담</th><th>계약</th><th>부킹</th></tr>"+sites.map(([s,h,p,c,k,g])=>`<tr><td><b>${s}</b></td><td>${h}</td><td>${p}명</td><td>${c}</td><td>${k}</td><td><span class='badge ${g==='강세'?'b-g':(g==='회원제'?'b-gd':'b-b')}'>${g}</span></td></tr>`).join('');
+document.getElementById('mapBoard').innerHTML=mapCols.map(([h,s,items])=>`<div class='col'><div class='hh'><b>${h}</b><span>${s}</span></div><ul>${items.map(i=>{const p=i.lastIndexOf(' ');return `<li><span>${i.slice(0,p)}</span><b>${i.slice(p+1)}</b></li>`}).join('')}</ul></div>`).join('');
+document.getElementById('dealTbl').innerHTML="<tr><th>거점</th><th>상품</th><th>경로</th><th>구좌</th></tr>"+deals.map(([h,p,c,n])=>`<tr><td><b>${h}</b></td><td>${p}</td><td>${c}</td><td><b>${n}</b></td></tr>`).join('')+"<tr><td colspan='3' style='text-align:right;font-weight:800'>합계</td><td><b style='color:var(--m)'>23구좌</b></td></tr>";
+document.getElementById('orgTbl').innerHTML="<tr><th>거점</th><th>인원</th><th>연 목표</th><th>핵심 타깃</th></tr>"+org.map(([h,n,t,k])=>`<tr><td><b>${h}</b></td><td>${n}명</td><td>${t}</td><td>${k}</td></tr>`).join('')+"<tr><td><b>합계</b></td><td><b>200명</b></td><td><b>5,520구좌 · 5,520억</b></td><td></td></tr>";
+document.getElementById('eduTbl').innerHTML="<tr><th>과정</th><th>내용</th><th>영상</th><th style='width:22%'>진행률</th><th></th><th>확인 기준</th></tr>"+edu.map(([n,d,v,p,t])=>`<tr><td><b>${n}</b></td><td>${d}</td><td>${v}편</td><td><div class='bar'><i style='width:${p}%'></i></div></td><td><b>${p}%</b></td><td>${t}</td></tr>`).join('');
+document.getElementById('landGrid').innerHTML=lands.map(([n,h,v,r])=>`<div class='lcard'><div class='nm'>${n}</div><div class='hub'>${h} 거점 · /agents/${n[0]}**</div><div class='st'><div><b>${v}</b>어제 방문</div><div><b>${r}</b>상담 신청</div><div><b>GA4</b>추적 중</div></div><span class='lk'>페이지 보기</span></div>`).join('');
+document.getElementById('tmTbl').innerHTML="<tr><th>단계</th><th>대상</th><th>오늘 배정</th><th>안내 범위</th></tr>"+tms.map(([s,t,n,g])=>`<tr><td><b>${s}</b></td><td>${t}</td><td>${n}건</td><td>${g}</td></tr>`).join('');
+document.getElementById('payTbl').innerHTML="<tr><th>시각</th><th>거점 · 담당</th><th>상품</th><th>상태</th></tr>"+pays.map(([t,h,p,s])=>`<tr><td>${t}</td><td>${h}</td><td><b>${p}</b></td><td>${s.includes('대기')?`<span class='badge b-gd'>${s}</span>`:`<span class='badge b-g'>${s}</span>`}</td></tr>`).join('');
+
+/* ---------- 뷰 전환 ---------- */
+const links=document.querySelectorAll('[data-v]');
+function show(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));
+  document.querySelectorAll('#v-'+v+' .prog i, #v-'+v+' .bar i').forEach(i=>{const w=i.style.width||i.dataset.w;i.style.width='0';requestAnimationFrame(()=>setTimeout(()=>i.style.width=w||i.dataset.w,60));});
+  window.scrollTo(0,0);
+}
+links.forEach(a=>a.addEventListener('click',e=>{if(a.tagName==='A'&&a.getAttribute('href'))return;e.preventDefault();history.replaceState(null,'','#'+a.dataset.v);show(a.dataset.v)}));
+const h=location.hash.replace('#','');
+show(h&&document.getElementById('v-'+h)?h:'dash');
+</script>
+</body>
+</html>
