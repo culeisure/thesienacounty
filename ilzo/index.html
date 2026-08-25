@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=1280">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>PROJECT ILZO · 일조</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -124,6 +124,48 @@ main{padding:22px 28px 34px;min-width:0}
 .lcard .st{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--sub)}
 .lcard .st b{display:block;font-size:17px;color:var(--ink)}
 .lcard .lk{display:block;margin-top:12px;background:var(--tint);color:var(--m);border-radius:8px;text-align:center;padding:8px;font-size:12px;font-weight:800}
+nav .menu{display:contents}
+
+/* ---------- mobile ---------- */
+@media (max-width:860px){
+  body{display:block}
+  nav{position:sticky;top:0;z-index:60;height:auto;padding:12px 14px 0;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+  nav h1{font-size:19px;display:inline}
+  nav .logo{display:inline;margin-right:8px;font-size:10px}
+  nav .sub{display:inline;margin-left:8px;font-size:10.5px;margin-bottom:0}
+  nav .menu{display:flex;overflow-x:auto;gap:6px;padding:10px 0 12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav .menu::-webkit-scrollbar{display:none}
+  nav .menu a{flex:none;white-space:nowrap;font-size:12.5px;padding:8px 12px;margin-bottom:0;background:#2A2224}
+  nav .menu a.on{background:var(--m)}
+  nav .acct{display:none}
+  main{padding:16px 14px 40px}
+  .top{flex-direction:column;align-items:flex-start;gap:4px;margin-bottom:12px}
+  .top h2{font-size:17px;white-space:normal}
+  .top .d{text-align:left;font-size:11.5px}
+  .kpi{grid-template-columns:1fr 1fr;gap:9px}
+  .kpi .card{padding:12px 13px}
+  .v{font-size:22px}
+  .g2{grid-template-columns:1fr;gap:10px}
+  .card{padding:14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  #hubTbl,#siteTbl,#eduTbl{min-width:600px}
+  #dealTbl,#orgTbl,#tmTbl,#payTbl{min-width:470px}
+  .sum{flex-wrap:wrap;gap:8px}
+  .sum .card{flex:1 1 42%;padding:11px 13px}
+  .sum .v{font-size:19px}
+  .note{gap:8px;font-size:12px}
+  .board{display:flex;overflow-x:auto;gap:10px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .board .col{flex:0 0 232px}
+  .phoneWrap{grid-template-columns:1fr;gap:16px}
+  .phone{width:min(392px,100%);margin:0 auto}
+  .gEdu{grid-template-columns:1fr;gap:10px}
+  .lgrid{grid-template-columns:1fr 1fr;gap:9px}
+  .leg{font-size:11px}
+}
+@media (max-width:400px){
+  .lgrid{grid-template-columns:1fr}
+  .vid{grid-template-columns:repeat(3,1fr)}
+  .vid .th{height:64px;font-size:20px}
+}
 </style>
 </head>
 <body>
@@ -132,6 +174,7 @@ main{padding:22px 28px 34px;min-width:0}
   <div class="logo">PROJECT ILZO</div>
   <h1>일조<span>一兆</span></h1>
   <div class="sub">매일이 쌓여 1조 · 영업 관리 시스템</div>
+  <div class="menu">
   <a class="on" data-v="dash">대시보드 · 일조 보드</a>
   <a data-v="map">현장 배치 · 일조 맵</a>
   <a data-v="sales">상담 · 회원모집 · 계약</a>
@@ -142,6 +185,7 @@ main{padding:22px 28px 34px;min-width:0}
   <a data-v="landing">개인 랜딩 관리</a>
   <a data-v="tm">고객 DB · TM</a>
   <a data-v="pay">정산 · 전자계약</a>
+  </div>
   <div class="acct"><b>회장 · 시행사 계정 공유</b><br>읽기 전용 · 매일 07:00 자동 결산<br><span style="color:#6E6467">시연용 데모 · 2027.03.24 기준 시뮬레이션</span></div>
 </nav>
 
